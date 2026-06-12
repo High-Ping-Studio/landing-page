@@ -230,49 +230,6 @@
       }
     }
 
-    /* Ping bars beside logo */
-    .logo-ping-bars {
-      position: absolute;
-      right: -2rem;
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      gap: 3px;
-      align-items: flex-end;
-      height: 2.5rem;
-      opacity: 0;
-      transition: opacity 0.35s ease;
-      z-index: 3;
-    }
-
-    .logo-interactive:hover .logo-ping-bars,
-    .logo-interactive:focus .logo-ping-bars {
-      opacity: 1;
-    }
-
-    .logo-ping-bars span {
-      width: 5px;
-      border-radius: 1px;
-      background: var(--gray-700);
-      transform: scaleY(0.3);
-      transition: transform 0.3s ease, background 0.3s ease;
-    }
-
-    .logo-interactive:hover .logo-ping-bars span,
-    .logo-interactive:focus .logo-ping-bars span {
-      animation: barBounce 0.6s ease-in-out infinite;
-    }
-
-    .logo-ping-bars span:nth-child(1) { height: 8px; animation-delay: 0s;     background: var(--red);       }
-    .logo-ping-bars span:nth-child(2) { height: 14px; animation-delay: 0.1s;  background: var(--red);       }
-    .logo-ping-bars span:nth-child(3) { height: 22px; animation-delay: 0.2s; }
-    .logo-ping-bars span:nth-child(4) { height: 30px; animation-delay: 0.3s; }
-
-    @keyframes barBounce {
-      0%, 100% { transform: scaleY(0.5); opacity: 0.5; }
-      50% { transform: scaleY(1); opacity: 1; }
-    }
-
     /* Bottom animated tab bar navigation */
     .tab-nav-wrap {
       position: fixed;
@@ -395,6 +352,8 @@
       text-align: center;
       padding: calc(2.5rem + var(--safe-top)) 2rem 2rem;
       position: relative;
+      overflow: hidden;
+      min-height: 100vh;
     }
 
     @media (hover: none) and (pointer: coarse) {
@@ -601,8 +560,6 @@
       margin: 2.75rem 0;
       padding: 2.25rem clamp(1.25rem, 4vw, 2rem) 2rem;
       text-align: center;
-      border-top: 1px solid rgba(255, 43, 43, 0.18);
-      border-bottom: 1px solid rgba(255, 43, 43, 0.18);
       background: linear-gradient(180deg, rgba(20, 20, 20, 0.55) 0%, rgba(0, 0, 0, 0.35) 100%);
       overflow: visible;
     }
@@ -841,14 +798,14 @@
       cursor: pointer;
     }
 
-    .game-tubes-canvas {
+    .hero-tubes-canvas {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
-      max-width: none;
       display: block;
-      z-index: 0;
+      z-index: -1;
+      pointer-events: none;
     }
 
     .game-preview-overlay {
@@ -1275,7 +1232,7 @@
       .social-links a:hover {
         transform: none;
       }
-      .game-tubes-canvas,
+      .hero-tubes-canvas,
       .game-preview-overlay { display: none !important; }
       .game-preview-static { display: flex !important; }
     }
@@ -1289,6 +1246,7 @@
   <div class="bg-overlay"></div>
 
   <header class="hero" id="home">
+    <canvas id="hero-tubes-canvas" class="hero-tubes-canvas" aria-hidden="true"></canvas>
     <div
       class="logo-interactive"
       tabindex="0"
@@ -1304,44 +1262,40 @@
         height="260"
         draggable="false"
       >
-      <div class="logo-ping-bars" aria-hidden="true">
-        <span></span><span></span><span></span><span></span>
-      </div>
     </div>
+      <section id="about" class="about-section">
+        <div class="about-inner">
+          <header class="about-head reveal">
+            <span class="section-label">Who We Are</span>
+            <h2 class="section-title about-title">A small studio with<br>big ambitions.</h2>
+            <p class="section-text about-lead">
+              High Ping Studios is an indie game development team born from a shared love of games
+              and late-night coding sessions. We're a tight-knit crew working on our debut title.
+            </p>
+          </header>
+
+          <div class="about-countdown reveal" id="engine">
+            <div class="countdown" id="countdown" role="timer" aria-live="polite"></div>
+            <p class="target-date">Target milestone: <span id="target-date"></span></p>
+          </div>
+
+          <div class="about-foot reveal">
+            <p class="section-text">
+              Founded with the belief that great games don't need massive budgets — just passion,
+              creativity, and a willingness to iterate until it feels right.
+            </p>
+            <p class="section-text">
+              Whether you're a player, press, or potential collaborator — welcome.
+            </p>
+          </div>
+        </div>
+      </section>
   </header>
 
-  <section id="about" class="about-section">
-    <div class="about-inner">
-      <header class="about-head reveal">
-        <span class="section-label">Who We Are</span>
-        <h2 class="section-title about-title">A small studio with<br>big ambitions.</h2>
-        <p class="section-text about-lead">
-          High Ping Studios is an indie game development team born from a shared love of games
-          and late-night coding sessions. We're a tight-knit crew working on our debut title.
-        </p>
-      </header>
-
-      <div class="about-countdown reveal" id="engine">
-        <div class="countdown" id="countdown" role="timer" aria-live="polite"></div>
-        <p class="target-date">Target milestone: <span id="target-date"></span></p>
-      </div>
-
-      <div class="about-foot reveal">
-        <p class="section-text">
-          Founded with the belief that great games don't need massive budgets — just passion,
-          creativity, and a willingness to iterate until it feels right.
-        </p>
-        <p class="section-text">
-          Whether you're a player, press, or potential collaborator — welcome.
-        </p>
-      </div>
-    </div>
-  </section>
 
   <div class="game-section" id="game">
     <div class="game-inner">
-      <div class="game-preview reveal" id="game-tubes-preview" aria-label="Game teaser — click to shift colors">
-        <canvas id="game-tubes-canvas" class="game-tubes-canvas" aria-hidden="true"></canvas>
+      <div class="game-preview reveal" id="game-tubes-preview" aria-label="Game teaser">
         <div class="game-preview-overlay">
           <p class="game-preview-brand">High Ping</p>
           <p class="game-preview-tagline">Teaser · Coming Soon</p>
@@ -1371,10 +1325,6 @@
         Let's connect — <strong>tap here to join or support us</strong> as we build our first game.
       </p>
 
-      <div class="contact-canvas-wrap">
-        <canvas id="particle-canvas" aria-label="Animated message: Join us, Connect, Support us"></canvas>
-        <p class="contact-fallback-text" aria-hidden="true">CONNECT</p>
-      </div>
       <a href="mailto:realhighpingstudio@gmail.com?subject=Join%20%2F%20Support%20High%20Ping%20Studios" class="btn btn-primary contact-cta-btn">
         Join / Support Us
       </a>
@@ -1393,53 +1343,6 @@
   <footer>
     <p>&copy; 2025 <strong>High Ping Studios</strong>. All rights reserved.</p>
   </footer>
-
-  <!-- Animated tab bar — main site navigation -->
-  <div class="tab-nav-wrap" role="navigation" aria-label="Main">
-    <div class="svg-container" aria-hidden="true">
-      <svg viewBox="0 0 202.9 45.5">
-        <clipPath id="menu-clip" clipPathUnits="objectBoundingBox" transform="scale(0.0049285362247413 0.021978021978022)">
-          <path d="M6.7,45.5c5.7,0.1,14.1-0.4,23.3-4c5.7-2.3,9.9-5,18.1-10.5c10.7-7.1,11.8-9.2,20.6-14.3c5-2.9,9.2-5.2,15.2-7 c7.1-2.1,13.3-2.3,17.6-2.1c4.2-0.2,10.5,0.1,17.6,2.1c6.1,1.8,10.2,4.1,15.2,7c8.8,5,9.9,7.1,20.6,14.3c8.3,5.5,12.4,8.2,18.1,10.5 c9.2,3.6,17.6,4.2,23.3,4H6.7z"/>
-        </clipPath>
-      </svg>
-    </div>
-    <menu class="menu" id="main-tab-bar">
-      <button type="button" class="menu__item active" data-section="home" style="--bgColorItem: #ff2b2b" aria-label="Home">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M3 10.5L12 3l9 7.5"/>
-          <path d="M5 9.75V20h5v-6h4v6h5V9.75"/>
-        </svg>
-      </button>
-      <button type="button" class="menu__item" data-section="engine" style="--bgColorItem: #cc2222" aria-label="Engine">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-          <path d="M2 17l10 5 10-5"/>
-          <path d="M2 12l10 5 10-5"/>
-        </svg>
-      </button>
-      <button type="button" class="menu__item" data-section="game" style="--bgColorItem: #6b6b6b" aria-label="Our Game">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M6 11h4"/>
-          <path d="M8 9v4"/>
-          <path d="M15 12h.01"/>
-          <path d="M18 10h.01"/>
-          <rect x="2" y="6" width="20" height="12" rx="2"/>
-        </svg>
-      </button>
-      <button type="button" class="menu__item" data-section="about" style="--bgColorItem: #444444" aria-label="About">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 2l2.4 4.86L20 7.64l-3.9 3.8.92 5.38L12 14.77l-5.02 2.65.92-5.38L4 7.64l5.6-.78L12 2z"/>
-        </svg>
-      </button>
-      <button type="button" class="menu__item" data-section="contact" style="--bgColorItem: #ff4444" aria-label="Contact">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-          <rect x="2" y="4" width="20" height="16" rx="2"/>
-          <path d="M22 7l-10 7L2 7"/>
-        </svg>
-      </button>
-      <div class="menu__border"></div>
-    </menu>
-  </div>
 
 <script type="text/plain" id="inline-tubes-module">
 /**
@@ -1863,13 +1766,12 @@ const e="180",t=100,s=101,r=102,i=200,n=201,a=202,o=203,u=204,l=205,h=206,c=207,
         setTimeout(() => { this.style.transform = ''; }, 150);
       });
     }
-
-    /* ── Tubes cursor teaser (game preview box) ── */
-    (function initGameTubes() {
+    /* ── Tubes background animation for hero ── */
+    (function initHeroTubes() {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-      const container = document.getElementById('game-tubes-preview');
-      const canvas = document.getElementById('game-tubes-canvas');
+      const container = document.getElementById('home');
+      const canvas = document.getElementById('hero-tubes-canvas');
       if (!container || !canvas) return;
 
       let app = null;
@@ -1877,21 +1779,6 @@ const e="180",t=100,s=101,r=102,i=200,n=201,a=202,o=203,u=204,l=205,h=206,c=207,
 
       const TUBE_COLORS = ['#ff2b2b', '#cc2222', '#8a1818'];
       const LIGHT_COLORS = ['#ff2b2b', '#ff6b6b', '#ff4444', '#cc2222'];
-      const ALT_PALETTES = [
-        ['#ff2b2b', '#e02020', '#991111'],
-        ['#ff5555', '#cc2222', '#661010'],
-        ['#ff6b6b', '#ff2b2b', '#4a0a0a'],
-        ['#ff2b2b', '#8a1818', '#ff8a8a'],
-      ];
-
-      function randomRedColors(count) {
-        const bases = [0xff2b2b, 0xcc2222, 0xff6b6b, 0x8a1818, 0xff4444, 0x661010];
-        return Array.from({ length: count }, () => {
-          const base = bases[Math.floor(Math.random() * bases.length)];
-          const v = Math.max(0x220000, base + Math.floor((Math.random() - 0.5) * 0x222222));
-          return '#' + v.toString(16).padStart(6, '0');
-        });
-      }
 
       function resizeCanvas() {
         const w = container.clientWidth;
@@ -1919,23 +1806,21 @@ const e="180",t=100,s=101,r=102,i=200,n=201,a=202,o=203,u=204,l=205,h=206,c=207,
           const blobUrl = URL.createObjectURL(blob);
           const module = await import(blobUrl);
           URL.revokeObjectURL(blobUrl);
+
           const TubesCursor = module.default;
           if (!container.isConnected) return;
 
           resizeCanvas();
           app = TubesCursor(canvas, {
+            bloom: { threshold: 0, strength: 0.5, radius: 0.3 },
             tubes: {
               colors: TUBE_COLORS,
               lights: { intensity: 200, colors: LIGHT_COLORS },
             },
           });
         } catch (err) {
-          console.error('Game tubes preview failed to load:', err);
+          console.error('Hero tubes failed to load:', err);
           started = false;
-          const overlay = container.querySelector('.game-preview-overlay');
-          const staticEl = container.querySelector('.game-preview-static');
-          if (overlay) overlay.style.display = 'none';
-          if (staticEl) staticEl.style.display = 'flex';
         }
       }
 
@@ -1944,13 +1829,6 @@ const e="180",t=100,s=101,r=102,i=200,n=201,a=202,o=203,u=204,l=205,h=206,c=207,
         app = null;
         started = false;
       }
-
-      container.addEventListener('click', () => {
-        if (!app || !app.tubes) return;
-        const palette = ALT_PALETTES[Math.floor(Math.random() * ALT_PALETTES.length)];
-        app.tubes.setColors(palette);
-        app.tubes.setLightsColors(randomRedColors(4));
-      });
 
       window.addEventListener('resize', () => {
         if (!started) return;
