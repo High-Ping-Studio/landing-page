@@ -1837,7 +1837,7 @@ const e="180",t=100,s=101,r=102,i=200,n=201,a=202,o=203,u=204,l=205,h=206,c=207,
       });
 
       const obs = new IntersectionObserver(entries => {
-        entries.forEach(e => { e.isIntersecting ? start() : stop(); });
+        entries.forEach(e => { if (e.isIntersecting) start(); });
       }, { threshold: 0.15 });
       obs.observe(container);
     })();
