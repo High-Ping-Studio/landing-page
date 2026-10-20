@@ -556,6 +556,244 @@
       margin-top: 0.5rem;
     }
 
+    /* ── Who We Are: three layout variants (keep one, delete the rest) ── */
+    .about-alt {
+      max-width: 880px;
+      margin: 4.5rem auto 0;
+      padding: 0;
+    }
+
+    .about-alt-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about-title,
+    .about-b-title,
+    .about-c-title {
+      text-wrap: balance;
+    }
+
+    /* Variant A — studio spec sheet */
+    .about-a .about-a-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.4rem 2.5rem;
+      width: 100%;
+      max-width: 760px;
+      margin-top: 2.25rem;
+      text-align: left;
+    }
+
+    .about-a .about-a-body p {
+      font-size: 0.98rem;
+      line-height: 1.75;
+      color: var(--gray-400);
+    }
+
+    .about-a-facts {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      width: 100%;
+      max-width: 760px;
+      margin-top: 2.75rem;
+      background: var(--gray-800);
+      border: 1px solid var(--gray-800);
+    }
+
+    .about-a-facts li {
+      background: #0b0b0b;
+      padding: 1.1rem 1.25rem;
+      text-align: left;
+    }
+
+    .about-a-facts span {
+      display: block;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+
+    .about-a-facts strong {
+      display: block;
+      margin-top: 0.45rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.4;
+    }
+
+    /* Variant B — manifesto typography */
+    .about-b-title {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(3rem, 9vw, 5.25rem);
+      font-weight: 400;
+      line-height: 0.92;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 1.75rem;
+    }
+
+    .about-b-title em {
+      font-style: normal;
+      color: var(--red);
+    }
+
+    .about-b-rule {
+      display: block;
+      width: 64px;
+      height: 2px;
+      margin: 0 auto 1.75rem;
+      background: var(--red);
+    }
+
+    .about-b-lead {
+      max-width: 560px;
+      margin: 0 auto 1.25rem;
+      font-size: clamp(1.05rem, 2.4vw, 1.22rem);
+      line-height: 1.6;
+      color: var(--gray-200);
+    }
+
+    .about-b-note {
+      max-width: 560px;
+      margin: 0 auto;
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--gray-500);
+    }
+
+    /* Variant C — dossier card */
+    .about-c .about-c-inner {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .about-c-title {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(2.5rem, 6vw, 3.75rem);
+      font-weight: 400;
+      line-height: 0.98;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 1.25rem;
+    }
+
+    .about-c-copy .section-text {
+      color: var(--gray-400);
+      font-size: 0.98rem;
+      line-height: 1.7;
+    }
+
+    .about-c-note {
+      margin-top: 1rem;
+      color: var(--gray-500) !important;
+      font-size: 0.9rem !important;
+    }
+
+    .about-card {
+      position: relative;
+      padding: 1.75rem;
+      background: var(--gray-900);
+      border: 1px solid var(--gray-700);
+      box-shadow: 8px 8px 0 0 rgba(255, 43, 43, 0.14);
+    }
+
+    .about-card::after {
+      content: "";
+      position: absolute;
+      top: -1px;
+      right: -1px;
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(225deg, var(--red) 0 50%, transparent 50%);
+    }
+
+    .about-card-top {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--gray-800);
+    }
+
+    .about-card-mark {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.9rem;
+      letter-spacing: 0.12em;
+      line-height: 1;
+      color: var(--white);
+    }
+
+    .about-card-est {
+      font-size: 0.58rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      text-align: right;
+      line-height: 1.6;
+    }
+
+    .about-card-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      margin: 1.25rem 0;
+    }
+
+    .about-card-rows > div {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .about-card-rows dt {
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+    }
+
+    .about-card-rows dd {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--gray-200);
+      text-align: right;
+    }
+
+    .about-card-foot {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--gray-800);
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+
+    .about-card-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--red);
+      animation: blink 1.5s ease-in-out infinite;
+    }
+
     .about-countdown {
       scroll-margin-top: 5rem;
       width: 100%;
@@ -1366,6 +1604,36 @@
         line-height: 1.65;
       }
 
+      .about-alt {
+        margin-top: 3rem;
+      }
+
+      .about-title br,
+      .about-b-title br {
+        display: none;
+      }
+
+      .about-a .about-a-body {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-top: 1.75rem;
+      }
+
+      .about-a-facts {
+        grid-template-columns: 1fr;
+        margin-top: 2rem;
+      }
+
+      .about-c .about-c-inner {
+        grid-template-columns: 1fr;
+        gap: 2.25rem;
+        align-items: start;
+      }
+
+      .about-card {
+        box-shadow: 6px 6px 0 0 rgba(255, 43, 43, 0.14);
+      }
+
       .about-countdown {
         margin: 2rem 0;
         padding: 1.75rem 0.65rem 1.5rem;
@@ -1596,30 +1864,36 @@
         draggable="false"
       >
     </div>
-      <section id="about" class="about-section">
-        <div class="about-inner">
-          <header class="about-head reveal">
-            <span class="section-label">Who We Are</span>
-            <h2 class="section-title about-title">A small studio with<br>big ambitions.</h2>
-            <p class="section-text about-lead">
-              High Ping Studios is an indie game development team born from a shared love of games. We're a tight-knit crew working on our debut title.
-            </p>
-          </header>
 
-          <div class="about-foot reveal">
-            <p class="section-text">
-              Founded with the belief that great games don't need massive budgets — just passion,
-              creativity, and a willingness to iterate until it feels right.
-            </p>
-            <p class="section-text">
-            </p>
-            <p class="section-text">
-            </p>
-            <p class="section-text">
-            </p>
-            <p class="section-text">
-            </p>
-          </div>
+      <sectin id="about-b" class="about-section about-alt about-b">
+        <div class="about-alt-inner reveal">
+          <span class="section-label">Who We Are</span>
+          <h2 class="about-b-title">A <em>small</em> studio with <br>big ambitions.</h2>
+          <span class="about-b-rule" aria-hidden="true"></span>
+          <p class="about-b-lead">
+            High Ping Studios is an indie game development team born from a shared love of games.
+            We're a tight-knit crew working on our debut title.
+          </p>
+          <p class="about-b-note">
+            Founded with the belief that great games don't need massive budgets — just passion,
+            creativity, and a willingness to iterate until it feels right.
+          </p>
+        </div>
+        <div class="about-inner">
+          <ul class="about-a-facts reveal">
+            <li>
+              <span>Studio</span>
+              <strong>Indie, independent</strong>
+            </li>
+            <li>
+              <span>Platform</span>
+              <strong>PC · Single player</strong>
+            </li>
+            <li>
+              <span>Engine</span>
+              <strong>Built in-house</strong>
+            </li>
+          </ul>
         </div>
       </section>
   </header>
