@@ -105,7 +105,7 @@
       text-size-adjust: 100%;
     }
 
-    #home, #about, #engine, #game, #live, #contact {
+    #home, #about, #game, #live, #contact {
       scroll-margin-top: 1rem;
       scroll-margin-bottom: 6rem;
     }
@@ -773,21 +773,67 @@
     }
 
     .game-section {
+      position: relative;
       max-width: none;
-      background: rgba(20, 20, 20, 0.9);
+      padding: clamp(5rem, 10vw, 8rem) 0;
+      background: #080808;
       border-top: 1px solid var(--gray-800);
       border-bottom: 1px solid var(--gray-800);
-      padding: 6rem 0;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .game-bg {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background-image: url("res/Screenshot%202026-10-20%20125338.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .game-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(3, 3, 3, 0.97) 0%, rgba(3, 3, 3, 0.92) 34%, rgba(3, 3, 3, 0.55) 66%, rgba(3, 3, 3, 0.28) 100%),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, transparent 24%, transparent 68%, rgba(0, 0, 0, 0.7) 100%);
     }
 
     .game-inner {
+      position: relative;
+      z-index: 1;
       max-width: 1100px;
       margin: 0 auto;
       padding: 0 2rem;
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 4rem;
-      align-items: center;
+    }
+
+    .game-copy {
+      max-width: 570px;
+    }
+
+    .game-copy .section-title {
+      font-size: clamp(2.5rem, 6vw, 3.75rem);
+      letter-spacing: -0.02em;
+      margin-bottom: 1.4rem;
+    }
+
+    .game-copy .section-text {
+      color: var(--gray-200);
+    }
+
+    .game-art-tag {
+      position: absolute;
+      right: 2rem;
+      bottom: 1.75rem;
+      z-index: 1;
+      font-size: 0.66rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray-500);
     }
 
     .game-preview {
@@ -879,11 +925,12 @@
       padding: 0.35rem 0.75rem;
       border: 1px solid var(--gray-700);
       border-radius: 999px;
+      background: rgba(0, 0, 0, 0.4);
       font-size: 0.75rem;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--gray-400);
+      color: var(--gray-200);
     }
 
     .badge-live {
@@ -943,42 +990,6 @@
       justify-content: space-between;
       gap: 0.75rem;
       margin-bottom: 1rem;
-    }
-
-    .live-tabs {
-      display: inline-flex;
-      gap: 0.25rem;
-      padding: 0.25rem;
-      background: var(--black);
-      border: 1px solid var(--gray-700);
-    }
-
-    .live-tab {
-      appearance: none;
-      border: 0;
-      background: transparent;
-      color: var(--gray-400);
-      font-family: "Exo 2", sans-serif;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      padding: 0.55rem 1.15rem;
-      cursor: pointer;
-      transition: color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
-    }
-
-    .live-tab:hover { color: var(--white); }
-
-    .live-tab.is-active {
-      background: var(--red);
-      color: var(--white);
-      box-shadow: 3px 3px 0 0 var(--red-shadow);
-    }
-
-    .live-tab:focus-visible {
-      outline: 2px solid var(--red);
-      outline-offset: 2px;
     }
 
     .live-status {
@@ -1125,24 +1136,6 @@
       text-shadow: 0 2px 16px #000;
     }
 
-    .live-foot {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem 1.5rem;
-      padding-top: 1rem;
-    }
-
-    .live-note {
-      font-size: 0.8rem;
-      line-height: 1.5;
-      color: var(--gray-500);
-      max-width: 46rem;
-    }
-
-    .live-note strong { color: var(--gray-200); font-weight: 600; }
-
     .live-external {
       font-size: 0.72rem;
       font-weight: 600;
@@ -1160,7 +1153,7 @@
     .live-cards {
       list-style: none;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 1px;
       margin-top: 3rem;
       background: var(--gray-800);
@@ -1335,13 +1328,11 @@
     }
 
     @media (max-width: 900px) {
-      .game-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-      .live-cards { grid-template-columns: 1fr; }
       .logo-ping-bars { display: none; }
     }
 
     @media (max-width: 768px) {
-      #home, #about, #engine, #game, #live, #contact {
+      #home, #about, #game, #live, #contact {
         scroll-margin-bottom: calc(var(--tab-nav-clearance) + var(--safe-bottom) + 1rem);
       }
 
@@ -1387,11 +1378,29 @@
       }
 
       .game-section {
-        padding: 4rem 0;
+        padding: 4.5rem 0;
+      }
+
+      .game-bg {
+        background-position: 64% center;
+      }
+
+      .game-bg::after {
+        background:
+          linear-gradient(180deg, rgba(3, 3, 3, 0.55) 0%, rgba(3, 3, 3, 0.86) 42%, rgba(3, 3, 3, 0.97) 100%),
+          linear-gradient(90deg, rgba(3, 3, 3, 0.6) 0%, rgba(3, 3, 3, 0.2) 100%);
       }
 
       .game-inner {
         padding: 0 1.25rem;
+      }
+
+      .game-copy {
+        max-width: 100%;
+      }
+
+      .game-art-tag {
+        display: none;
       }
 
       .live-section {
@@ -1407,42 +1416,13 @@
       }
 
       .live-toolbar {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.75rem;
-      }
-
-      .live-tabs {
-        display: flex;
-        width: 100%;
-      }
-
-      .live-tab {
-        flex: 1;
-        padding: 0.65rem 0.5rem;
-      }
-
-      .live-status {
-        align-self: flex-start;
+        flex-wrap: wrap;
+        gap: 0.6rem 1rem;
       }
 
       .live-facade-play {
         width: 58px;
         height: 58px;
-      }
-
-      .live-foot {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.9rem;
-      }
-
-      .live-external {
-        display: block;
-        width: 100%;
-        text-align: center;
-        border: 1px solid var(--gray-700);
-        padding: 0.7rem 1rem;
       }
 
       .live-card {
@@ -1646,12 +1626,9 @@
 
 
   <div class="game-section" id="game">
+    <div class="game-bg" aria-hidden="true"></div>
     <div class="game-inner">
-      <div class="about-countdown reveal" id="engine">
-            <div class="countdown" id="countdown" role="timer" aria-live="polite"></div>
-            <p class="target-date">Target milestone: <span id="target-date"></span></p>
-          </div>
-      <div class="reveal">
+      <div class="game-copy reveal">
         <span class="section-label">Our First Game</span>
         <h2 class="section-title">Something worth the wait.</h2>
         <p class="section-text" style="margin-bottom:2rem">
@@ -1664,6 +1641,7 @@
         <div class="badge-live">Currently in development</div>
       </div>
     </div>
+    <span class="game-art-tag" aria-hidden="true">Concept art — Project Vedanta</span>
   </div>
 
   <section class="live-section" id="live">
@@ -1680,6 +1658,7 @@
       <div class="live-stage reveal">
         <div class="live-toolbar">
           <p class="live-status" role="status" data-state="checking">Checking stream…</p>
+          <a class="live-external" href="https://twitch.tv/simploo" target="_blank" rel="noopener noreferrer">Open on Twitch ↗</a>
         </div>
 
         <div class="live-frame">
@@ -1689,10 +1668,6 @@
             <span class="live-facade-label">Watch the stream</span>
             <span class="live-facade-sub">High Ping Studios · dev stream</span>
           </button>
-        </div>
-
-        <div class="live-foot">
-          <a class="live-external" href="https://twitch.tv/simploo" target="_blank" rel="noopener noreferrer">Open on Twitch ↗</a>
         </div>
       </div>
 
@@ -2153,7 +2128,7 @@ const e="180",t=100,s=101,r=102,i=200,n=201,a=202,o=203,u=204,l=205,h=206,c=207,
     const countdownTimer = setInterval(tickCountdown, 1000);
     })();
 
-    /* ── Live stream deck (Twitch / YouTube, click-to-load) ── */
+    /* ── Live stream deck (Twitch, click-to-load) ── */
     (function initLiveDeck() {
       const stage = document.querySelector('.live-stage');
       if (!stage) return;
@@ -2161,10 +2136,7 @@ const e="180",t=100,s=101,r=102,i=200,n=201,a=202,o=203,u=204,l=205,h=206,c=207,
       const frame = stage.querySelector('.live-frame');
       const facade = stage.querySelector('.live-facade');
       const statusEl = stage.querySelector('.live-status');
-      const noteEl = stage.querySelector('.live-note');
-      const externalEl = stage.querySelector('.live-external');
-      const tabs = Array.from(stage.querySelectorAll('.live-tab'));
-      if (!frame || !facade || !statusEl || !noteEl || !externalEl || !tabs.length) return;
+      if (!frame || !facade || !statusEl) return;
 
       const PARENTS = [
         'parent=highpingstudio.com',
@@ -2174,71 +2146,22 @@ const e="180",t=100,s=101,r=102,i=200,n=201,a=202,o=203,u=204,l=205,h=206,c=207,
         'parent=127.0.0.1'
       ].join('&');
 
-      const SOURCES = {
-        twitch: {
-          label: 'Twitch',
-          title: 'High Ping Studios live on Twitch',
-          player: 'https://player.twitch.tv/?channel=simploo&' + PARENTS + '&autoplay=true',
-          link: 'https://twitch.tv/simploo'
-        },
-        youtube: {
-          label: 'YouTube',
-          title: 'High Ping Studios live on YouTube',
-          player: 'https://www.youtube-nocookie.com/embed/live_stream?channel=UC8OL6kHchaeWAFFP9gXdlbw&autoplay=1',
-          link: 'https://www.youtube.com/@realsimploo'
-        }
-      };
-
-      let active = 'twitch';
-      let loaded = false;
-
-      function syncExternal() {
-        const source = SOURCES[active];
-        externalEl.href = source.link;
-        externalEl.textContent = 'Open on ' + source.label + ' ↗';
-      }
+      const PLAYER_URL = 'https://player.twitch.tv/?channel=simploo&' + PARENTS + '&autoplay=true';
 
       function loadPlayer() {
-        const source = SOURCES[active];
         const iframe = document.createElement('iframe');
         iframe.className = 'live-iframe';
-        iframe.src = source.player;
-        iframe.title = source.title;
+        iframe.src = PLAYER_URL;
+        iframe.title = 'High Ping Studios live on Twitch';
         iframe.allow = 'autoplay; fullscreen; picture-in-picture';
         iframe.allowFullscreen = true;
         iframe.referrerPolicy = 'strict-origin-when-cross-origin';
         iframe.loading = 'lazy';
         frame.replaceChildren(iframe);
         frame.classList.add('is-loaded');
-        loaded = true;
       }
-
-      function selectTab(tab) {
-        active = tab.dataset.source === 'youtube' ? 'youtube' : 'twitch';
-        tabs.forEach(item => {
-          const on = item === tab;
-          item.classList.toggle('is-active', on);
-          item.setAttribute('aria-selected', String(on));
-          item.tabIndex = on ? 0 : -1;
-        });
-        syncExternal();
-        if (loaded) loadPlayer();
-      }
-
-      tabs.forEach((tab, index) => {
-        tab.addEventListener('click', () => selectTab(tab));
-        tab.addEventListener('keydown', event => {
-          if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
-          event.preventDefault();
-          const dir = event.key === 'ArrowRight' ? 1 : -1;
-          const next = tabs[(index + dir + tabs.length) % tabs.length];
-          next.focus();
-          selectTab(next);
-        });
-      });
 
       facade.addEventListener('click', loadPlayer);
-      syncExternal();
 
       function setStatus(state, text) {
         statusEl.dataset.state = state;
@@ -2267,7 +2190,6 @@ const e="180",t=100,s=101,r=102,i=200,n=201,a=202,o=203,u=204,l=205,h=206,c=207,
             if (/offline/i.test(uptime)) {
               setStatus('offline', 'Offline right now');
               stage.classList.remove('is-live');
-              noteEl.innerHTML = 'Streams are announced on <strong>Discord &amp; X</strong>. Until then, the devlogs are on YouTube.';
               return;
             }
             if (!/(\d+\s*(second|minute|hour|day))/i.test(uptime)) {
@@ -2276,7 +2198,6 @@ const e="180",t=100,s=101,r=102,i=200,n=201,a=202,o=203,u=204,l=205,h=206,c=207,
             }
             setStatus('live', 'Live now · ' + uptime);
             stage.classList.add('is-live');
-            noteEl.innerHTML = '<strong>Streaming right now.</strong> Jump in — chat is open on both platforms.';
           })
           .catch(() => {
             setStatus('unknown', 'Check the channels');
