@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Project Vedanta — pitch deck by High Ping Studios.">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="theme-color" content="#000000">
+  <title>Project Vedanta — Pitch Deck · High Ping Studios</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23121212'/%3E%3Ctext x='16' y='21' font-family='Arial' font-size='13' font-weight='bold' fill='%23ff2b2b' text-anchor='middle'%3EHP%3C/text%3E%3C/svg%3E">
+  <link rel="preload" as="image" href="res/pitch-deck/01.webp" fetchpriority="high">
+  <link rel="stylesheet" href="res/fonts.css">
+  <style>
+    :root {
+      --red: #ff2b2b;
+      --red-dark: #cc2222;
+      --red-shadow: #8a1818;
+      --red-glow: rgba(255, 43, 43, 0.55);
+      --black: #000000;
+      --gray-900: #141414;
+      --gray-800: #1e1e1e;
+      --gray-700: #2a2a2a;
+      --gray-500: #6b6b6b;
+      --gray-400: #9a9a9a;
+      --gray-200: #d4d4d4;
+      --white: #f5f5f5;
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-right: env(safe-area-inset-right, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --safe-left: env(safe-area-inset-left, 0px);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100svh;
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+      padding-left: var(--safe-left);
+      padding-right: var(--safe-right);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 12% -10%, rgba(255, 43, 43, 0.16), transparent 42%),
+        radial-gradient(circle at 92% 4%, rgba(255, 43, 43, 0.07), transparent 32%),
+        linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+      background-size: auto, auto, 64px 64px, 64px 64px;
+      -webkit-mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0.35) 60%, transparent 100%);
+      mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0.35) 60%, transparent 100%);
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    ::selection {
+      background: var(--red);
+      color: #fff;
+    }
+
+    .skip-link {
+      position: fixed;
+      top: 0;
+      left: 1rem;
+      z-index: 100;
+      padding: 0.6rem 1rem;
+      background: var(--red);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transform: translateY(-120%);
+      transition: transform 0.15s ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .topbar {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding:
+        calc(1rem + var(--safe-top))
+        clamp(1rem, 4vw, 2.5rem)
+        1rem;
+      border-bottom: 1px solid var(--gray-800);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      min-height: 2.75rem;
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 2.1rem;
+      height: 2.1rem;
+      border-radius: 4px;
+      background: var(--red);
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      box-shadow: 3px 3px 0 var(--red-shadow);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .brand:hover .brand-mark {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--red-shadow);
+    }
+
+    .brand-copy {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    .brand-copy strong {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .brand-copy span {
+      font-family: "Exo 2", "Space Grotesk", system-ui, sans-serif;
+      font-size: 0.54rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      min-height: 2.55rem;
+      padding: 0.5rem 1.05rem;
+      border: 1px solid var(--gray-700);
+      border-radius: 5px;
+      background: rgba(20, 20, 20, 0.8);
+      color: var(--gray-200);
+      font-family: inherit;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease, border-color 0.12s ease;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    .btn:hover {
+      background: var(--gray-800);
+      border-color: var(--gray-500);
+    }
+
+    .btn:focus-visible,
+    .nav-btn:focus-visible,
+    .dot:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 2px var(--black), 0 0 0 4px var(--red);
+    }
+
+    .btn-primary {
+      border-color: var(--red-dark);
+      background: var(--red);
+      color: #fff;
+      box-shadow: 3px 3px 0 var(--red-shadow);
+    }
+
+    .btn-primary:hover {
+      background: var(--red);
+      border-color: var(--red-dark);
+      transform: translate(3px, 3px);
+      box-shadow: none;
+    }
+
+    main {
+      flex: 1 0 auto;
+      width: min(100%, 1480px);
+      margin: 0 auto;
+      padding:
+        clamp(1.75rem, 4vw, 3.25rem)
+        clamp(1rem, 4vw, 2.5rem)
+        clamp(2rem, 4vw, 3rem);
+    }
+
+    .deck-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: clamp(1rem, 4vw, 3rem);
+      margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+    }
+
+    .eyebrow {
+      display: block;
+      margin-bottom: 0.55rem;
+      font-family: "Exo 2", "Space Grotesk", system-ui, sans-serif;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4.8vw, 3.7rem);
+      font-weight: 700;
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--red);
+    }
+
+    .lede {
+      max-width: 42ch;
+      text-align: right;
+      color: var(--gray-500);
+      font-size: clamp(0.82rem, 1.2vw, 0.95rem);
+      line-height: 1.65;
+    }
+
+    .deck {
+      position: relative;
+    }
+
+    .deck-track {
+      display: flex;
+      overflow-x: auto;
+      overflow-y: hidden;
+      border: 1px solid var(--gray-800);
+      border-radius: 14px;
+      background: #080808;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.62);
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      overscroll-behavior-x: contain;
+    }
+
+    .deck-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .slide {
+      flex: 0 0 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(0.75rem, 2vw, 1.5rem);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.035), transparent 58%),
+        #080808;
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+    }
+
+    .slide img {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: min(68svh, 810px);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 8px;
+      background: var(--gray-900);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    }
+
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      z-index: 5;
+      display: grid;
+      place-items: center;
+      width: 2.9rem;
+      height: 2.9rem;
+      border: 1px solid var(--gray-700);
+      border-radius: 50%;
+      background: rgba(10, 10, 10, 0.78);
+      color: var(--white);
+      cursor: pointer;
+      transform: translateY(-50%);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      transition: background 0.15s ease, border-color 0.15s ease, opacity 0.15s ease, transform 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    .nav-btn:hover:not(:disabled) {
+      background: var(--red);
+      border-color: var(--red-dark);
+    }
+
+    .nav-btn:active:not(:disabled) {
+      transform: translateY(-50%) scale(0.94);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.22;
+      cursor: default;
+    }
+
+    .nav-btn svg {
+      width: 1.15rem;
+      height: 1.15rem;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .nav-btn.prev {
+      left: clamp(0.5rem, 2vw, 1rem);
+    }
+
+    .nav-btn.next {
+      right: clamp(0.5rem, 2vw, 1rem);
+    }
+
+    .deck-hud {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1.05rem;
+      padding-inline: 0.25rem;
+    }
+
+    .counter {
+      justify-self: start;
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.14em;
+      color: var(--gray-500);
+    }
+
+    .counter strong {
+      font-weight: 400;
+      color: var(--white);
+    }
+
+    .dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+    }
+
+    .dot {
+      width: 0.55rem;
+      height: 0.55rem;
+      padding: 0;
+      border: 1px solid var(--gray-500);
+      border-radius: 50%;
+      background: transparent;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .dot:hover {
+      border-color: var(--red);
+    }
+
+    .dot[aria-current="true"] {
+      border-color: var(--red);
+      background: var(--red);
+      box-shadow: 0 0 0 4px rgba(255, 43, 43, 0.16);
+      transform: scale(1.15);
+    }
+
+    .hint {
+      justify-self: end;
+      font-family: "Exo 2", "Space Grotesk", system-ui, sans-serif;
+      font-size: 0.58rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+    }
+
+    .site-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      width: min(100%, 1480px);
+      margin: 0 auto;
+      padding: 1.5rem clamp(1rem, 4vw, 2.5rem) calc(1.5rem + var(--safe-bottom));
+      border-top: 1px solid var(--gray-800);
+      color: var(--gray-500);
+      font-size: 0.75rem;
+    }
+
+    .site-footer strong {
+      color: var(--gray-400);
+      font-weight: 600;
+    }
+
+    .site-footer .confidential {
+      font-family: "Exo 2", "Space Grotesk", system-ui, sans-serif;
+      font-size: 0.55rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-align: right;
+    }
+
+    @media (max-width: 760px) {
+      .deck-head {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .lede {
+        max-width: 48ch;
+        text-align: left;
+      }
+
+      .slide img {
+        max-height: 60svh;
+      }
+
+      .nav-btn {
+        display: none;
+      }
+
+      .hint {
+        display: none;
+      }
+
+      .site-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.35rem;
+      }
+
+      .site-footer .confidential {
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .brand-copy {
+        display: none;
+      }
+
+      .btn {
+        min-height: 2.4rem;
+        padding: 0.45rem 0.8rem;
+        font-size: 0.63rem;
+      }
+
+      .slide {
+        padding: 0.5rem;
+      }
+
+      .slide img {
+        max-height: 52svh;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .deck-track {
+        scroll-behavior: auto;
+      }
+
+      .brand-mark,
+      .btn,
+      .nav-btn,
+      .dot,
+      .skip-link {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#deck-track">Skip to slides</a>
+
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="Back to High Ping Studios">
+      <span class="brand-mark" aria-hidden="true">HP</span>
+      <span class="brand-copy">
+        <strong>High Ping Studios</strong>
+        <span>Back to site</span>
+      </span>
+    </a>
+
+    <div class="actions">
+      <a class="btn" href="res/pitch-deck.pdf" target="_blank" rel="noopener noreferrer">Open PDF ↗</a>
+      <a class="btn btn-primary" href="res/pitch-deck.pdf" download="Project-Vedanta-Pitch-Deck.pdf">Download</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="deck-head">
+      <div>
+        <span class="eyebrow">Pitch deck · 2026</span>
+        <h1>Project <em>Vedanta</em></h1>
+      </div>
+      <p class="lede">
+        A narrative parkour experience set in Indian eschatological myth.
+        Six slides covering the vision, direction, movement and funding request.
+      </p>
+    </div>
+
+    <section class="deck" aria-roledescription="carousel" aria-label="Project Vedanta pitch deck">
+      <div class="deck-track" id="deck-track" tabindex="0" aria-label="Pitch deck slides. Use the left and right arrow keys to navigate.">
+        <figure class="slide" id="slide-1" role="group" aria-roledescription="slide" aria-label="Slide 1 of 6">
+          <img src="res/pitch-deck/01.webp" alt="Slide 1: Introducing Project Vedanta by High Ping Studios." width="1920" height="1080" fetchpriority="high" decoding="async">
+        </figure>
+        <figure class="slide" id="slide-2" role="group" aria-roledescription="slide" aria-label="Slide 2 of 6">
+          <img src="res/pitch-deck/02.webp" alt="Slide 2: Project Vedanta is a narrative parkour experience set in Indian eschatological myth, following a boy trapped in a labyrinth." width="1920" height="1080" loading="lazy" decoding="async">
+        </figure>
+        <figure class="slide" id="slide-3" role="group" aria-roledescription="slide" aria-label="Slide 3 of 6">
+          <img src="res/pitch-deck/03.webp" alt="Slide 3: Art direction — an epic narrative and visual adventure inspired by Shadow of the Colossus and Journey, with a fusion of Western orchestral and Indian instrumentation." width="1920" height="1080" loading="lazy" decoding="async">
+        </figure>
+        <figure class="slide" id="slide-4" role="group" aria-roledescription="slide" aria-label="Slide 4 of 6">
+          <img src="res/pitch-deck/04.webp" alt="Slide 4: Movement and the vertical slice — contextual run, jump, vault, slide and wallrun parkour, slow-to-medium pacing, and minimal player UI." width="1920" height="1080" loading="lazy" decoding="async">
+        </figure>
+        <figure class="slide" id="slide-5" role="group" aria-roledescription="slide" aria-label="Slide 5 of 6">
+          <img src="res/pitch-deck/05.webp" alt="Slide 5: A preview of the vertical slice gameplay." width="1920" height="1080" loading="lazy" decoding="async">
+        </figure>
+        <figure class="slide" id="slide-6" role="group" aria-roledescription="slide" aria-label="Slide 6 of 6">
+          <img src="res/pitch-deck/06.webp" alt="Slide 6: Funding and partnership request — seeking 50,000 US dollars for development and a targeted mid-2027 release." width="1920" height="1080" loading="lazy" decoding="async">
+        </figure>
+      </div>
+
+      <button class="nav-btn prev" type="button" data-prev aria-label="Previous slide" aria-controls="deck-track">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="nav-btn next" type="button" data-next aria-label="Next slide" aria-controls="deck-track">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+
+      <div class="deck-hud">
+        <p class="counter" aria-live="polite"><strong id="slide-current">01</strong> / 06</p>
+        <div class="dots">
+          <button class="dot" type="button" data-dot="0" aria-label="Go to slide 1" aria-current="true"></button>
+          <button class="dot" type="button" data-dot="1" aria-label="Go to slide 2"></button>
+          <button class="dot" type="button" data-dot="2" aria-label="Go to slide 3"></button>
+          <button class="dot" type="button" data-dot="3" aria-label="Go to slide 4"></button>
+          <button class="dot" type="button" data-dot="4" aria-label="Go to slide 5"></button>
+          <button class="dot" type="button" data-dot="5" aria-label="Go to slide 6"></button>
+        </div>
+        <span class="hint">Use ← → or swipe</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 <strong>High Ping Studios</strong>. All rights reserved.</p>
+    <p class="confidential">Confidential — for intended recipients only</p>
+  </footer>
+
+  <script>
+    (function initDeck() {
+      const track = document.getElementById('deck-track');
+      if (!track) return;
+
+      const slides = Array.from(track.querySelectorAll('.slide'));
+      const prevBtn = document.querySelector('[data-prev]');
+      const nextBtn = document.querySelector('[data-next]');
+      const dots = Array.from(document.querySelectorAll('[data-dot]'));
+      const currentEl = document.getElementById('slide-current');
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      let index = 0;
+      let scrollRaf = 0;
+      let resizeRaf = 0;
+
+      function scrollBehavior() {
+        return reduceMotion.matches ? 'auto' : 'smooth';
+      }
+
+      function update(nextIndex) {
+        index = Math.max(0, Math.min(slides.length - 1, nextIndex));
+        currentEl.textContent = String(index + 1).padStart(2, '0');
+        prevBtn.disabled = index === 0;
+        nextBtn.disabled = index === slides.length - 1;
+        dots.forEach(function (dot, dotIndex) {
+          if (dotIndex === index) {
+            dot.setAttribute('aria-current', 'true');
+          } else {
+            dot.removeAttribute('aria-current');
+          }
+        });
+      }
+
+      function goTo(nextIndex) {
+        const target = Math.max(0, Math.min(slides.length - 1, nextIndex));
+        track.scrollTo({ left: target * track.clientWidth, behavior: scrollBehavior() });
+        update(target);
+      }
+
+      track.addEventListener('scroll', function () {
+        cancelAnimationFrame(scrollRaf);
+        scrollRaf = requestAnimationFrame(function () {
+          update(Math.round(track.scrollLeft / track.clientWidth));
+        });
+      }, { passive: true });
+
+      prevBtn.addEventListener('click', function () {
+        goTo(index - 1);
+      });
+
+      nextBtn.addEventListener('click', function () {
+        goTo(index + 1);
+      });
+
+      dots.forEach(function (dot, dotIndex) {
+        dot.addEventListener('click', function () {
+          goTo(dotIndex);
+        });
+      });
+
+      window.addEventListener('keydown', function (event) {
+        if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey) return;
+        if (event.key === 'ArrowLeft') {
+          event.preventDefault();
+          goTo(index - 1);
+        } else if (event.key === 'ArrowRight') {
+          event.preventDefault();
+          goTo(index + 1);
+        } else if (event.key === 'Home') {
+          event.preventDefault();
+          goTo(0);
+        } else if (event.key === 'End') {
+          event.preventDefault();
+          goTo(slides.length - 1);
+        }
+      });
+
+      window.addEventListener('resize', function () {
+        cancelAnimationFrame(resizeRaf);
+        resizeRaf = requestAnimationFrame(function () {
+          track.scrollTo({ left: index * track.clientWidth, behavior: 'auto' });
+        });
+      });
+
+      const hashMatch = window.location.hash.match(/^#slide-(\d+)$/);
+      const startIndex = hashMatch
+        ? Math.max(0, Math.min(slides.length - 1, parseInt(hashMatch[1], 10) - 1))
+        : 0;
+
+      update(startIndex);
+      requestAnimationFrame(function () {
+        track.scrollTo({ left: startIndex * track.clientWidth, behavior: 'auto' });
+      });
+    })();
+  </script>
+</body>
+</html>
