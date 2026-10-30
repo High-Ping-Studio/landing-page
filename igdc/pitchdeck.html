@@ -321,6 +321,59 @@
       box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
     }
 
+    .slide-link {
+      position: relative;
+      display: block;
+      border-radius: 8px;
+      color: inherit;
+      text-decoration: none;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .slide-link:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 2px var(--black), 0 0 0 4px var(--red);
+    }
+
+    .slide-play {
+      position: absolute;
+      left: 50%;
+      bottom: clamp(1rem, 3vw, 1.75rem);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.55rem 0.95rem;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      background: rgba(8, 8, 8, 0.82);
+      color: var(--white);
+      font-family: "Exo 2", "Space Grotesk", system-ui, sans-serif;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      pointer-events: none;
+      transform: translateX(-50%);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+    }
+
+    .slide-play svg {
+      width: 0.7rem;
+      height: 0.7rem;
+      fill: currentColor;
+    }
+
+    .slide-link:hover .slide-play,
+    .slide-link:focus-visible .slide-play {
+      border-color: var(--red-dark);
+      background: var(--red);
+      transform: translateX(-50%) scale(1.04);
+    }
+
     .nav-btn {
       position: absolute;
       top: 50%;
@@ -436,6 +489,73 @@
       color: var(--gray-500);
     }
 
+    .itch {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+      align-items: center;
+      gap: clamp(1.5rem, 4vw, 3rem);
+      margin-top: clamp(2.5rem, 5vw, 4rem);
+      padding: clamp(1.25rem, 3vw, 2.5rem);
+      border: 1px solid var(--gray-800);
+      border-radius: 14px;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(255, 43, 43, 0.13), transparent 55%),
+        var(--gray-900);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+    }
+
+    .itch-frame {
+      display: grid;
+      place-items: center;
+      width: 100%;
+    }
+
+    .itch-frame iframe {
+      display: block;
+      width: 100%;
+      max-width: 552px;
+      height: 167px;
+      border: 0;
+      border-radius: 8px;
+    }
+
+    .itch-copy h2 {
+      margin-bottom: 0.6rem;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .itch-copy h2 em {
+      font-style: normal;
+      color: var(--red);
+    }
+
+    .itch-copy p {
+      max-width: 46ch;
+      color: var(--gray-400);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    .itch-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 1.15rem;
+    }
+
+    .itch-note {
+      margin-top: 0.85rem;
+      font-family: "Exo 2", "Space Grotesk", system-ui, sans-serif;
+      font-size: 0.55rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+    }
+
     .site-footer {
       display: flex;
       align-items: center;
@@ -487,6 +607,10 @@
         display: none;
       }
 
+      .itch {
+        grid-template-columns: 1fr;
+      }
+
       .site-footer {
         flex-direction: column;
         align-items: flex-start;
@@ -516,6 +640,12 @@
       .slide img {
         max-height: 52svh;
       }
+
+      .slide-play {
+        bottom: 0.7rem;
+        padding: 0.45rem 0.7rem;
+        font-size: 0.55rem;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -527,6 +657,7 @@
       .btn,
       .nav-btn,
       .dot,
+      .slide-play,
       .skip-link {
         transition: none;
       }
@@ -578,7 +709,9 @@
           <img src="../res/pitch-deck/04.webp" alt="Slide 4: Movement and the vertical slice — contextual run, jump, vault, slide and wallrun parkour, slow-to-medium pacing, and minimal player UI." width="1920" height="1080" decoding="async">
         </figure>
         <figure class="slide" id="slide-5" role="group" aria-roledescription="slide" aria-label="Slide 5 of 6">
-          <img src="../res/pitch-deck/05.webp" alt="Slide 5: A preview of the vertical slice gameplay." width="1920" height="1080" decoding="async">
+          <a class="slide-link" href="https://youtu.be/NT8GKlHNIm8" target="_blank" rel="noopener noreferrer" aria-label="Watch Project Vedanta gameplay on YouTube (opens in a new tab)">
+            <img src="../res/pitch-deck/05.webp" alt="Slide 5: A preview of the vertical slice gameplay." width="1920" height="1080" decoding="async" draggable="false">
+          </a>
         </figure>
         <figure class="slide" id="slide-6" role="group" aria-roledescription="slide" aria-label="Slide 6 of 6">
           <img src="../res/pitch-deck/06.webp" alt="Slide 6: Funding and partnership request — seeking 50,000 US dollars for development and a targeted mid-2027 release." width="1920" height="1080" decoding="async">
@@ -603,6 +736,20 @@
           <button class="dot" type="button" data-dot="5" aria-label="Go to slide 6"></button>
         </div>
         <span class="hint">Use ← → or swipe</span>
+      </div>
+    </section>
+
+    <section class="itch" aria-labelledby="itch-title">
+      <div class="itch-copy">
+        <span class="eyebrow">Playable build</span>
+        <h2 id="itch-title">Play <em>Project Vedanta</em></h2>
+        <p>
+          The vertical slice is live on itch.io. Jump into the current build and
+          follow development as the labyrinth takes shape.
+        </p>
+        <div class="itch-actions">
+          <a class="btn btn-primary" href="https://simploo.itch.io/vedanta" target="_blank" rel="noopener noreferrer">Play on itch.io ↗</a>
+        </div>
       </div>
     </section>
   </main>
