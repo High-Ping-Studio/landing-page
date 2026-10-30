@@ -490,10 +490,6 @@
     }
 
     .itch {
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-      align-items: center;
-      gap: clamp(1.5rem, 4vw, 3rem);
       margin-top: clamp(2.5rem, 5vw, 4rem);
       padding: clamp(1.25rem, 3vw, 2.5rem);
       border: 1px solid var(--gray-800);
@@ -504,23 +500,21 @@
       box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
     }
 
-    .itch-frame {
+    .itch-copy {
       display: grid;
-      place-items: center;
-      width: 100%;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 0.35rem clamp(1.5rem, 4vw, 3rem);
     }
 
-    .itch-frame iframe {
-      display: block;
-      width: 100%;
-      max-width: 552px;
-      height: 167px;
-      border: 0;
-      border-radius: 8px;
+    .itch-copy .eyebrow {
+      grid-column: 1;
+      margin-bottom: 0;
     }
 
     .itch-copy h2 {
-      margin-bottom: 0.6rem;
+      grid-column: 1;
+      margin-bottom: 0.15rem;
       font-size: clamp(1.5rem, 3vw, 2.2rem);
       line-height: 1.05;
       letter-spacing: -0.03em;
@@ -532,28 +526,21 @@
     }
 
     .itch-copy p {
-      max-width: 46ch;
+      grid-column: 1;
+      max-width: 62ch;
       color: var(--gray-400);
       font-size: 0.9rem;
       line-height: 1.65;
     }
 
     .itch-actions {
+      grid-column: 2;
+      grid-row: 1 / span 3;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
+      justify-content: flex-end;
       gap: 0.75rem;
-      margin-top: 1.15rem;
-    }
-
-    .itch-note {
-      margin-top: 0.85rem;
-      font-family: "Exo 2", "Space Grotesk", system-ui, sans-serif;
-      font-size: 0.55rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gray-500);
     }
 
     .site-footer {
@@ -607,8 +594,15 @@
         display: none;
       }
 
-      .itch {
+      .itch-copy {
         grid-template-columns: 1fr;
+      }
+
+      .itch-actions {
+        grid-column: 1;
+        grid-row: auto;
+        justify-content: flex-start;
+        margin-top: 0.5rem;
       }
 
       .site-footer {
@@ -678,7 +672,6 @@
 
     <div class="actions">
       <a class="btn" href="../res/pitch-deck.pdf" target="_blank" rel="noopener noreferrer">Open PDF ↗</a>
-      <a class="btn btn-primary" href="../res/pitch-deck.pdf" download="Project-Vedanta-Pitch-Deck.pdf">Download</a>
     </div>
   </header>
 
